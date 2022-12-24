@@ -13,7 +13,7 @@ from services.consts import CHROMOSOMES_INDEX_PATH, RAW_LENGTHS_PATH, RAW_GENES_
 from services.match_genes.compressed_json import dump_json
 
 
-def _init_index():
+def init_index():
     genome = {}
     with open(RAW_LENGTHS_PATH, 'r') as f1:
         for row in f1:
@@ -25,7 +25,7 @@ def _init_index():
     return genome
 
 
-def _fill_index(index):
+def fill_index(index):
     with open(RAW_GENES_PATH, 'r') as f2:
         next(f2)  # Skip header
         for row in f2:
@@ -34,17 +34,19 @@ def _fill_index(index):
             index[chromosome][start:end+1] = 1
 
 
-def _write_index(index):
+def build_index():
     """
     Prepare the index dictionary to be written on disk by decoding the bitarrays to base64 text
     Dump the index using compressed_json
     """
-    for key, value in index.items():
-        index[key] = b64encode(value.tobytes()).decode('ascii')
-    dump_json(CHROMOSOMES_INDEX_PATH, index)
+    index = init_index()
+    fill_index(index)
+    return {
+        key: b64encode(value.tobytes()).decode('ascii')
+        for key, value in index.items()
+    }
 
 
-def build_index():
-    index = _init_index()
-    _fill_index(index)
-    _write_index(index)
+if __name__ == '__main__':
+    chrom_index = build_index()
+    dump_json(CHROMOSOMES_INDEX_PATH, chrom_index)
