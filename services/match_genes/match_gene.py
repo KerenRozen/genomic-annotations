@@ -28,4 +28,4 @@ def sample_matches_any_gene(chromosome: int, start_pos: int, end_pos: int) -> bo
     :return: Whether the sample intersects with any of the genes in the index.
     """
     index = read_index()
-    return index.get(chromosome, bitarray())[start_pos:end_pos].any()
+    return index.get(chromosome, bitarray())[start_pos:end_pos+1].any()

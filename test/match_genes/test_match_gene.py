@@ -42,13 +42,20 @@ def test__assert_mass_run_time_and_success_rate():
         (1, 69900, 70000, True),
         (1, 69500, 70100, True),
         (1, 69000, 69500, True),
-        (1, 71000, 71200, False)
+        (1, 71000, 71200, False),
+        (1, 249250600, 250250680, False),
+        (1, -10, 100, False),
+        (1, 69000, 69091, True)
+
     ], ids=[
         "1.a. Complete overlap",
         "1.a0. (Mukhal)",
         "1.b Overlap from right",
         "1.c Overlap from left",
         "1.d No overlap",
+        "1.e End_pos is longer than chromosome's length",
+        "1.f start_pos < 0",
+        "1.g last base of interval match"
     ])
 def test__assert_match_gene(chromosome, start, end, expected_result):
     assert sample_matches_any_gene(chromosome, start, end) is expected_result
