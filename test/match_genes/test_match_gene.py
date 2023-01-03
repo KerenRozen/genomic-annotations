@@ -32,7 +32,7 @@ def test__assert_mass_run_time_and_success_rate():
             row = next(f, None)
         diff = time.time() - start_time
         assert 100000 * diff / rows <= 1
-        assert success == 445429
+        assert success == 445435
 
 
 @pytest.mark.parametrize(
