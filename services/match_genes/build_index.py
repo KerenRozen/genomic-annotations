@@ -21,6 +21,8 @@ def init_index():
             chromosome, length = int(chromosome), int(length)
             genome[chromosome] = bitarray(length)
             genome[chromosome].setall(0)
+            genome[-chromosome] = bitarray(length)
+            genome[-chromosome].setall(0)
 
     return genome
 
@@ -29,9 +31,12 @@ def fill_index(index):
     with open(RAW_GENES_PATH, 'r') as f2:
         next(f2)  # Skip header
         for row in f2:
-            _, chromosome, start, end = row.split()
+            _, chromosome, start, end, strand = row.split()
             chromosome, start, end = int(chromosome), int(start), int(end)
-            index[chromosome][start:end+1] = 1
+            if strand == '+':
+                index[chromosome][start:end+1] = 1
+            else:
+                index[-chromosome][start:end + 1] = 1
 
 
 def build_index():
