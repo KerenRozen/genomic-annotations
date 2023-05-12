@@ -5,36 +5,33 @@ from services.consts import READS, CHROMOSOME_TO_INT, GENOME, INTERSECT, MY_CODE
 from services.match_genes.match_gene import sample_matches_any_gene
 
 
-# def test__my_code_using_pysam():
-#     """
-#     Checking my code using pysam, by iterating through the reads.
-#     """
-#     bamfile = pysam.AlignmentFile(READS, 'rb')
-#     #print(bamfile.count()) ---> returns 77678
-#
-#     success = 0
-#     unmapped = 0
-#
-#     for read in bamfile:
-#         if read.is_unmapped:
-#             #print(f'Read {read.query_name} is unmapped')
-#             unmapped += 1
-#         else:
-#             chromosome = CHROMOSOME_TO_INT[bamfile.get_reference_name(read.reference_id)]
-#             start_pos = read.reference_start
-#             end_pos = read.reference_end
-#             if read.is_reverse:
-#                 strand = '-'
-#             else:
-#                 strand = '+'
-#
-#             success += int(sample_matches_any_gene(chromosome, start_pos, end_pos, strand))
-#
-#     bamfile.close()
-#     print('#Success: ', success)
-#     print('#Unmapped: ', unmapped)
-#     print('The BAM file contains 77678 reads')
-#     print(f'{success/77678}% of samples are inside genes')
+def test__my_code_using_pysam():
+    """
+    Checking my code using pysam, by iterating through the reads.
+    """
+    bamfile = pysam.AlignmentFile(READS, 'rb')
+    #print(bamfile.count()) ---> returns 77678
+
+    success = 0
+    unmapped = 0
+
+    for read in bamfile:
+        if read.is_unmapped:
+            #print(f'Read {read.query_name} is unmapped')
+            unmapped += 1
+        else:
+            chromosome = CHROMOSOME_TO_INT[bamfile.get_reference_name(read.reference_id)]
+            start_pos = read.reference_start
+            end_pos = read.reference_end
+            flag = read.flag
+
+            success += int(sample_matches_any_gene(chromosome, start_pos, end_pos, flag))
+
+    bamfile.close()
+    print('#Success: ', success)
+    print('#Unmapped: ', unmapped)
+    print('The BAM file contains 77678 reads')
+    print(f'{success/77678}% of samples are inside genes')
 
 
 def test__intersection_using_bedtools():

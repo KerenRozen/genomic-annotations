@@ -10,7 +10,7 @@ from bitarray import bitarray
 from base64 import b64encode
 
 from services.consts import CHROMOSOMES_INDEX_PATH, RAW_LENGTHS_PATH, RAW_GENES_PATH
-from services.match_genes.compressed_json import dump_json
+from services.common.compressed_json import dump_json
 
 
 def init_index():
