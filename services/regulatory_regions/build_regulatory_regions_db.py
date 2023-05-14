@@ -1,8 +1,9 @@
+import argparse
 import gzip
+from pathlib import Path
 
 from services.common.compressed_json import dump_json
-from services.consts import CHROMOSOME_TO_INT, REGULATORY_REGIONS_ORDER, \
-    REGULATORY_REGIONS, REGULATORY_REGIONS_DB
+from services.consts import CHROMOSOME_TO_INT, REGULATORY_REGIONS_ORDER
 
 """
 599404 lines.
@@ -15,7 +16,7 @@ No strand info.
 
 def init_regulatory_regions(path, db_size=None):
     db = {}
-    with gzip.open(REGULATORY_REGIONS, 'rt') as f:
+    with gzip.open(Path(path), 'rt') as f:
         for row in f:
             if db_size and len(db) >= db_size:
                 break
@@ -37,11 +38,15 @@ def init_regulatory_regions(path, db_size=None):
 
 def main():
     """
-    Prepare the index dictionary to be written on disk by decoding the bitarrays to base64 text
-    Dump the index using compressed_json
+    Create regulatory regions DB in .json file from the gff file.
+    The GFF path and the path where the DB will be stored are received as input from the user.
     """
-    db = init_regulatory_regions(REGULATORY_REGIONS)
-    dump_json(REGULATORY_REGIONS_DB, db)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("regulatory_regions_file", help="path to the regulatory regions file")
+    parser.add_argument("regulatory_regions_db_file", help="path to the regulatory regions DB will be saved (should end with .json)")
+    args = parser.parse_args()
+    db = init_regulatory_regions(args.regulatory_regions_file, 10**7)
+    dump_json(Path(args.regulatory_regions_db_file), db)
 
 
 if __name__ == '__main__':
