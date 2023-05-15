@@ -45,7 +45,7 @@ def main():
     parser.add_argument("regulatory_regions_file", help="path to the regulatory regions file")
     parser.add_argument("regulatory_regions_db_file", help="path to the regulatory regions DB will be saved (should end with .json)")
     args = parser.parse_args()
-    db = init_regulatory_regions(args.regulatory_regions_file, 10**7)
+    db = init_regulatory_regions(args.regulatory_regions_file)
     dump_json(Path(args.regulatory_regions_db_file), db)
 
 

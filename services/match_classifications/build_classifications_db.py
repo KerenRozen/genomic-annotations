@@ -39,7 +39,7 @@ def main():
     parser.add_argument("genome_file", help="path to the genome file")
     parser.add_argument("classifications_db_file", help="path to the classifications DB will be saved (should end with .json)")
     args = parser.parse_args()
-    db = init_classifications_db(args.genome_file, 10**7)
+    db = init_classifications_db(args.genome_file)
     dump_json(Path(args.classifications_db_file), db)
 
 
