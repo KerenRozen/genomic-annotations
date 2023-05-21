@@ -14,7 +14,7 @@ def init_classifications_db(path):
             if not row.startswith('#'):
                 fields = row.strip().split('\t')
                 seg_type = fields[2]
-                if fields[2] != 'chromosome' and fields[0] == '1':
+                if fields[2] != 'chromosome':
                     chromosome = CHROMOSOME_TO_INT[fields[0]]
                     start_pos = int(fields[3])
                     end_pos = int(fields[4])
@@ -24,7 +24,7 @@ def init_classifications_db(path):
                     elif strand == '-':
                         index = PARTIAL_SUMS[chromosome+83]
                     if strand == '+' or strand == '-':
-                        db[index+start_pos-1:index+end_pos+1] |= 2**CLASSIFICATIONS_ORDER[seg_type]
+                        db[index+start_pos-1:index+end_pos] |= 2**CLASSIFICATIONS_ORDER[seg_type]
 
     f.close()
     return db

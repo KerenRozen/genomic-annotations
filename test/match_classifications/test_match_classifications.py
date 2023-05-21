@@ -35,15 +35,19 @@ def test__runtime():
         (1, 134751, 134901, 16, [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
         (1, 141474, 150000, 16, [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]),
         (1, 157800, 160500, 16, [0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]),
-        (1, 367650, 367660, 15, [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1])
+        (1, 367650, 367660, 15, [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1]),
+        (6, 122686167, 122686317, 16, [0 for i in range(32)]),
+        (83, 14800, 14950, 16, [0 for i in range(32)])
     ], ids=[
-        "1.a gene",
+        "1.a gene, mRNA, exon, CDS",
         "1.b nothing",
-        "1.c pseudogene, processed_transcript, exon",
+        "1.c pseudogene, processed_transcript, pseudogenic_transcript, exon",
         "1.d exon, mRNA, gene, three_prime_UTR",
         "1.e processed_transcript, transcript, exon, lincRNA",
         "1.f processed_transcript, exon, lincRNA, snRNA, snRNA_gene",
-        "1.g lincRNA_gene, lincRNA, gene, mRNA, five_prime_UTR, exon, CDS"
+        "1.g lincRNA_gene, lincRNA, gene, mRNA, five_prime_UTR, exon, CDS",
+        "2.a nothing",
+        "2.b nothing"
     ])
 def test__assert_classifications(chromosome, start, end, strand, expected_result):
     db = np.load(CLASSIFICATIONS_DB)
