@@ -1,14 +1,14 @@
 import time
 
+import numpy as np
 import pytest
 
-from services.common.compressed_json import load_json
 from services.consts import TEST_SAMPLES, CLASSIFICATIONS_DB
 from services.match_classifications.match_classifications import match_classifications
 
 
 def test__runtime():
-    db = load_json(CLASSIFICATIONS_DB)
+    db = np.load(CLASSIFICATIONS_DB)
 
     with open(TEST_SAMPLES, 'r') as f:
         next(f)  # Skip header
@@ -22,7 +22,7 @@ def test__runtime():
             rows += 1
             row = next(f, None)
         diff = time.time() - start_time
-        assert(100000 * diff / rows <= 1.2)
+        assert(100000 * diff / rows <= 1)
 
 
 
@@ -46,7 +46,7 @@ def test__runtime():
         "1.g lincRNA_gene, lincRNA, gene, mRNA, five_prime_UTR, exon, CDS"
     ])
 def test__assert_classifications(chromosome, start, end, strand, expected_result):
-    db = load_json(CLASSIFICATIONS_DB)
+    db = np.load(CLASSIFICATIONS_DB)
     actual_result = match_classifications(db, chromosome, start, end, strand)
     assert actual_result == expected_result, f"expected {expected_result}, but got {actual_result}"
 

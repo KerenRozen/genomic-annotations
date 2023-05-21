@@ -4,7 +4,6 @@ import pybedtools
 import pysam
 import matplotlib.pyplot as plt
 from services.consts import READS, GENOME, TEST_SAMPLES, BEDTOOLS_TIMES, MY_ALGORITHM_TIMES
-import pandas as pd
 from services.match_genes.match_gene import sample_matches_any_gene, read_index
 
 

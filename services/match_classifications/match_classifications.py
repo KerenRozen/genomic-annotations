@@ -1,3 +1,8 @@
+import numpy as np
+
+from services.consts import PARTIAL_SUMS
+
+
 def decode_strand(flag: int) -> str:
     """
     Receives sample's BAM FLAG.
@@ -21,8 +26,9 @@ def match_classifications(db, chromosome: int, start_pos: int, end_pos: int, fla
                                  'C_gene_segment', 'aberrant_processed_transcript', 'transcript', 'five_prime_UTR']
     """
     strand = decode_strand(flag)
-
-    res = db.get(f"{chromosome}-{strand}-{start_pos}", 0) | db.get(f"{chromosome}-{strand}-{end_pos}", 0)
+    index = PARTIAL_SUMS[chromosome-1] if strand == '+' else PARTIAL_SUMS[chromosome+83]
+    res = np.bitwise_or.reduce(db[index+start_pos :index+end_pos+1])
 
     return [(res >> i) & 1 for i in range(31, -1, -1)]
+    #return res
 
