@@ -22,15 +22,15 @@ def init_classifications_db(path):
                     strand = fields[6]
                     if strand == '+':
                         index = PARTIAL_SUMS_GH38[chromosome-1]
-                        db[index + start_pos - 1:index + end_pos] |= 2 ** CLASSIFICATIONS_ORDER_GH38[seg_type]
+                        db[index+start_pos-1: index+end_pos] |= 2 ** CLASSIFICATIONS_ORDER_GH38[seg_type]
                     elif strand == '-':
                         index = PARTIAL_SUMS_GH38[chromosome+193]
-                        db[index + start_pos - 1:index + end_pos] |= 2 ** CLASSIFICATIONS_ORDER_GH38[seg_type]
+                        db[index+start_pos-1: index+end_pos] |= 2 ** CLASSIFICATIONS_ORDER_GH38[seg_type]
                     else:
                         index1 = PARTIAL_SUMS_GH38[chromosome-1]
                         index2 = PARTIAL_SUMS_GH38[chromosome+193]
-                        db[index1+start_pos-1:index1+end_pos] |= 2**CLASSIFICATIONS_ORDER_GH38[seg_type]
-                        db[index2+start_pos-1:index2+ end_pos] |= 2 ** CLASSIFICATIONS_ORDER_GH38[seg_type]
+                        db[index1+start_pos-1: index1+end_pos] |= 2**CLASSIFICATIONS_ORDER_GH38[seg_type]
+                        db[index2+start_pos-1 :index2+end_pos] |= 2 ** CLASSIFICATIONS_ORDER_GH38[seg_type]
 
     f.close()
     return db

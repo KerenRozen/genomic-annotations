@@ -29,25 +29,25 @@ def test__runtime():
 @pytest.mark.parametrize(
     ['chromosome', 'start', 'end', 'strand', 'expected_result'],
     [
-        (1, 69091, 70008, 15, [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-        (1, 69091, 70008, 16, [0 for i in range(32)]),
-        (1, 11870, 12030, 15, [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0]),
-        (1, 134751, 134901, 16, [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-        (1, 141474, 150000, 16, [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]),
-        (1, 157800, 160500, 16, [0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]),
-        (1, 367650, 367660, 15, [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1]),
-        (6, 122686167, 122686317, 16, [0 for i in range(32)]),
-        (83, 14800, 14950, 16, [0 for i in range(32)])
+        (1, 235448349, 235448440, 15, [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1]),
+        (10, 112445437, 112445650, 16, [0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]),
+        (11, 407315, 414923, 16, [0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1]),
+        (12, 45050420, 45051603, 15, [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0]),
+        (14, 21269298, 21269410, 16, [0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]),
+        (3, 100, 300, 15, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+        (18, 641327, 641541, 15, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1]),
+        (23, 51340284, 51340402, 16, [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0]),
+        (68, 300, 800, 15, [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
     ], ids=[
-        "1.a gene, mRNA, exon, CDS",
-        "1.b nothing",
-        "1.c pseudogene, processed_transcript, pseudogenic_transcript, exon",
-        "1.d exon, mRNA, gene, three_prime_UTR",
-        "1.e processed_transcript, transcript, exon, lincRNA",
-        "1.f processed_transcript, exon, lincRNA, snRNA, snRNA_gene",
-        "1.g lincRNA_gene, lincRNA, gene, mRNA, five_prime_UTR, exon, CDS",
-        "2.a nothing",
-        "2.b nothing"
+        "1.a 'lnc_RNA', 'mRNA', 'gene', 'exon', 'three_prime_UTR', 'CDS'",
+        "1.b 'lnc_RNA', 'five_prime_UTR', 'mRNA', 'gene', 'exon'",
+        "1.c 'transcript', 'lnc_RNA', 'five_prime_UTR', 'mRNA', 'biological_region', 'gene', 'exon', 'CDS'",
+        "1.d 'exon', 'biological_region', 'lnc_RNA', 'ncRNA_gene'",
+        "1.e 'lnc_RNA', 'five_prime_UTR', 'mRNA', 'biological_region', 'gene', 'exon'",
+        "1.f nothing",
+        "1.g 'exon', 'mRNA', 'CDS', 'gene'",
+        "2.a 'exon', 'lnc_RNA', 'ncRNA_gene'",
+        "2.b 'scaffold'"
     ])
 def test__assert_classifications(chromosome, start, end, strand, expected_result):
     db = np.load(CLASSIFICATIONS_DB)
