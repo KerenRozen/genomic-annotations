@@ -80,7 +80,7 @@ CLASSIFICATIONS_ORDER_GH37 = {'RNA': 31, 'snoRNA_gene': 30, 'lincRNA': 29, 'VD_g
                          'pseudogenic_transcript': 6, 'J_gene_segment': 5, 'supercontig': 4, 'C_gene_segment': 3,
                          'aberrant_processed_transcript': 2, 'transcript': 1, 'five_prime_UTR': 0}
 
-CLASSIFICATIONS_ORDER_GH38 = {'scaffold': 25, 'pseudogene': 24, 'lnc_RNA': 23, 'chromosome': 22, 'ncRNA': 21,
+CLASSIFICATIONS_ORDER_GH38 = {'scaffold': 24, 'pseudogene': 23, 'lnc_RNA': 22, 'ncRNA': 21,
                               'unconfirmed_transcript': 20, 'V_gene_segment': 19, 'biological_region': 18, 'snRNA': 17,
                               'D_gene_segment': 16, 'five_prime_UTR': 15, 'pseudogenic_transcript': 14, 'gene': 13,
                               'mRNA': 12, 'scRNA': 11, 'snoRNA': 10, 'tRNA': 9, 'J_gene_segment': 8, 'ncRNA_gene': 7,
