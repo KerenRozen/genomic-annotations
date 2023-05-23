@@ -3,19 +3,20 @@ import gzip
 import numpy as np
 from pathlib import Path
 
-from services.consts import CHROMOSOME_TO_INT, CLASSIFICATIONS_ORDER, PARTIAL_SUMS
+from services.consts import CHROMOSOME_TO_INT_GH37, CLASSIFICATIONS_ORDER, PARTIAL_SUMS, CHROMOSOME_TO_INT_GH38
 
 
 def init_classifications_db(path):
     #db = np.zeros(249250621, dtype=np.uintc)
-    db = np.zeros(6003609478, dtype=np.uintc)
+    db = np.zeros(6203609478, dtype=np.uintc)
+    #db = np.zeros(6198822410, dtype = np.uintc)
     with gzip.open(Path(path), 'rt') as f:
         for row in f:
             if not row.startswith('#'):
                 fields = row.strip().split('\t')
                 seg_type = fields[2]
                 if fields[2] != 'chromosome':
-                    chromosome = CHROMOSOME_TO_INT[fields[0]]
+                    chromosome = CHROMOSOME_TO_INT_GH37[fields[0]]
                     start_pos = int(fields[3])
                     end_pos = int(fields[4])
                     strand = fields[6]
