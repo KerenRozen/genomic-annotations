@@ -1,6 +1,6 @@
 import numpy as np
 
-from services.consts import PARTIAL_SUMS
+from services.consts import PARTIAL_SUMS_GH38
 
 
 def decode_strand(flag: int) -> str:
@@ -17,17 +17,17 @@ def decode_strand(flag: int) -> str:
 def match_classifications(db, chromosome: int, start_pos: int, end_pos: int, flag: int) -> list:
     """
     Receives a sample.
-    :return: a 32-long list where each classification is set to 1 if the sample within it and 0 if not.
-    The classifications order:  ['RNA', 'snoRNA_gene', 'lincRNA', 'VD_gene_segment', 'NMD_transcript_variant', 'exon',
-                                 'miRNA', 'biological_region', 'mRNA', 'snRNA', 'rRNA_gene', 'miRNA_gene', 'gene',
-                                 'rRNA', 'nc_primary_transcript', 'CDS', 'snoRNA', 'processed_pseudogene',
-                                 'V_gene_segment', 'three_prime_UTR', 'mt_gene', 'processed_transcript', 'pseudogene',
-                                 'snRNA_gene', 'lincRNA_gene', 'pseudogenic_transcript', 'J_gene_segment', 'supercontig',
-                                 'C_gene_segment', 'aberrant_processed_transcript', 'transcript', 'five_prime_UTR']
+    :return: a 26-long list where each classification is set to 1 if the sample within it and 0 if not.
+    The classifications order: ['scaffold', 'pseudogene', 'lnc_RNA', 'chromosome', 'ncRNA', 'unconfirmed_transcript',
+                                'V_gene_segment', 'biological_region', 'snRNA', 'D_gene_segment', 'five_prime_UTR',
+                                'pseudogenic_transcript', 'gene', 'mRNA', 'scRNA', 'snoRNA', 'tRNA', 'J_gene_segment',
+                                'ncRNA_gene', 'exon', 'rRNA', 'miRNA', 'three_prime_UTR', 'transcript',
+                                'C_gene_segment', 'CDS']
+
     """
     strand = decode_strand(flag)
-    index = PARTIAL_SUMS[chromosome-1] if strand == '+' else PARTIAL_SUMS[chromosome+83]
+    index = PARTIAL_SUMS_GH38[chromosome-1] if strand == '+' else PARTIAL_SUMS_GH38[chromosome+83]
     res = np.bitwise_or.reduce(db[index+start_pos-1 :index+end_pos])
 
-    return np.unpackbits(np.array([res], dtype='>i4').view(np.uint8))[-32:].tolist()
+    return np.unpackbits(np.array([res], dtype='>i4').view(np.uint8))[-26:].tolist()
 
