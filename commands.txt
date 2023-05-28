@@ -1,0 +1,13 @@
+tar -xvzf genomic_annotations-1.4.1.tar.gz
+mv /groups/nshomron/kr/genomic_annotations-1.4.1/* /groups/nshomron/kr/annotation_project
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+export PYTHONPATH=${PYTHONPATH}:/groups/nshomron/kr/annotation_project
+
+srun --pty -p nshomron2 -N 1 -n 1 -t 1:00:00 --mem=50G --nodelist=compute-0-2 /bin/bash
+
+python3 build_classifications_db.py /groups/nshomron/kr/annotation_project/data/Homo_sapiens.GRCh38.109.gff3.gz /groups/nshomron/kr/annotation_project/data/classifications_db.npy
+
+1930080059
