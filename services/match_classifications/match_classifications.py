@@ -17,7 +17,7 @@ def decode_strand(flag: int) -> str:
 def match_classifications(db, chromosome: int, start_pos: int, end_pos: int, flag: int) -> list:
     """
     Receives a sample.
-    :return: a 26-long list where each classification is set to 1 if the sample within it and 0 if not.
+    :return: a 25-long list where each classification is set to 1 if the sample within it and 0 if not.
     The classifications order: ['scaffold', 'pseudogene', 'lnc_RNA', 'ncRNA', 'unconfirmed_transcript',
                                 'V_gene_segment', 'biological_region', 'snRNA', 'D_gene_segment', 'five_prime_UTR',
                                 'pseudogenic_transcript', 'gene', 'mRNA', 'scRNA', 'snoRNA', 'tRNA', 'J_gene_segment',

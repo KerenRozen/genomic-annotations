@@ -1,6 +1,6 @@
 import gzip
 
-from services.consts import GH38_GENOME, CHROMOSOMES_LENGTHS_GH38, CHROMOSOME_TO_INT_GH38
+from services.consts import GH38_GENOME, CHROMOSOMES_LENGTHS_GH38, CHROMOSOME_TO_INT_GH38, GH38_REGULATION
 
 
 def create_partial_sums():
@@ -33,17 +33,25 @@ if __name__ == '__main__':
     types = set()
     chrs = set()
     strands = set()
-    with gzip.open(GH38_GENOME, 'rt') as f:
-        for row in f:
-            if not row.startswith('#'):
-                fields = row.strip().split('\t')
-                seg_type = fields[2]
-                types.add(seg_type)
-                if fields[2] != 'chromosome':
-                    chromosome = CHROMOSOME_TO_INT_GH38[fields[0]]
-                    chrs.add(chromosome)
-                    strand = fields[6]
-                    strands.add(strand)
+    with gzip.open(GH38_REGULATION, 'rt') as f:
+         for row in f:
+            fields = row.strip().split('\t')
+            chr = fields[0]
+            type = fields[2]
+            starnd = fields[6]
+            chrs.add(chr)
+            types.add(type)
+            strands.add(starnd)
+
+    #         if not row.startswith('#'):
+    #             fields = row.strip().split('\t')
+    #             seg_type = fields[2]
+    #             types.add(seg_type)
+    #             if fields[2] != 'chromosome':
+    #                 chromosome = CHROMOSOME_TO_INT_GH38[fields[0]]
+    #                 chrs.add(chromosome)
+    #                 strand = fields[6]
+    #                 strands.add(strand)
     f.close()
     print(len(types))
     print(len(chrs))

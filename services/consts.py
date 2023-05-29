@@ -2,19 +2,15 @@ from pathlib import Path
 
 DATA_PATH = Path("../../data")
 
-RAW_GENES_PATH = DATA_PATH / 'genes_with_strand.csv'
-RAW_LENGTHS_PATH = DATA_PATH / 'GRch37_chrom_lengths.tsv'
-CHROMOSOMES_INDEX_PATH = DATA_PATH / 'chromosomes_index.json'
-CLASSIFICATIONS_PATH = DATA_PATH / 'classifications_index.json'
-# REGULATORY_REGIONS = DATA_PATH / 'homo_sapiens.GRCh37.Regulatory_Build.regulatory_features.20201218.gff.gz'
-# REGULATORY_REGIONS_DB = DATA_PATH / 'regulatory_regions_db.json'
+
 TEST_SAMPLES = DATA_PATH / 'test_samples_with_flag.tsv'
 READS = DATA_PATH / 'SLX-11873.D707_D502.HFNWFBBXX.s_5.GRCh37.bwa2.bamdownsample001.sorted.bam'
 # GENOME = DATA_PATH / 'Homo_sapiens.GRCh37.87.gff3.gz'
 GH38_GENOME = DATA_PATH / 'Homo_sapiens.GRCh38.109.gff3.gz'
+GH38_REGULATION = DATA_PATH / 'homo_sapiens.GRCh38.Regulatory_Build.regulatory_features.20221007.gff.gz'
 CLASSIFICATIONS_DB = DATA_PATH / 'classifications_db.npy'
-INTERSECT = DATA_PATH / 'bedtools_intersect_method_match_gene_results.csv'
-MY_CODE = DATA_PATH / 'my_algorithm_match_gene_results.csv'
+REGULATIONS_DB = DATA_PATH / 'regulations_db.npy'
+
 
 CHROMOSOME_TO_INT_GH37 = {'10': 10, '11': 11, '12': 12, '13': 13, '14': 14, '15': 15, '16': 16, '17': 17, '18': 18,
                      '19': 19, '1': 1, '20': 20, '21': 21, '22': 22, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6,
@@ -88,8 +84,8 @@ CLASSIFICATIONS_ORDER_GH38 = {'scaffold': 24, 'pseudogene': 23, 'lnc_RNA': 22, '
                               'C_gene_segment': 1, 'CDS': 0}
 
 
-REGULATORY_REGIONS_ORDER = {'CTCF_binding_site': 5, 'promoter': 4, 'promoter_flanking_region':3,
-                            'open_chromatin_region':2, 'TF_binding_site':1, 'enhancer':0}
+REGULATORY_REGIONS_ORDER = {'CTCF_binding_site': 4, 'promoter': 3, 'open_chromatin_region': 2,
+                            'TF_binding_site':1, 'enhancer':0}
 
 
 CHROMOSOMES_LENGTHS_GH37 ={1: 249250621, 10: 135534747, 11: 135006516, 12: 133851895, 13: 115169878, 14: 107349540, 15: 102531392,
