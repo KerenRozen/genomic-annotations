@@ -6,7 +6,7 @@ from pathlib import Path
 from services.consts import CHROMOSOME_TO_INT_GH38, PARTIAL_SUMS_GH38, REGULATORY_REGIONS_ORDER
 
 
-def init_classifications_db(path):
+def init_regulations_db(path):
     #db = np.zeros(249250621, dtype=np.uintc) # Local machine
     #db = np.zeros(6203609478, dtype=np.uintc) # Gh37
     db = np.zeros(6198822410, dtype = np.uintc) # Gh38
@@ -44,7 +44,7 @@ def main():
     parser.add_argument("regulation_file", help="path to the match_regulations file")
     parser.add_argument("regulation_db_file", help="path to the match_regulations DB will be saved")
     args = parser.parse_args()
-    db = init_classifications_db(args.regulation_file)
+    db = init_regulations_db(args.regulation_file)
     np.save(Path(args.regulation_db_file), db)
 
 

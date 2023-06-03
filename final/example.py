@@ -2,8 +2,8 @@
 # Artem run guide:
 
 # In top of file:
-exec(open("run_gh38_annotation_function.py").read())
-GH38_RAW_PATH = "C:/Users/keren/PycharmProjects/genomic-annotation/data/Homo_sapiens.GRCh38.109.gff3.gz"
+exec(open("relative/path/to/run_gh38_regulations_function.py").read())
+GH38_RAW_PATH = "relative/path/to/homo_sapiens.GRCh38.Regulatory_Build.regulatory_features.20221007.gff.gz"
 
 # In code:
-match_classifications(1, 1, 2, 1)
+match_regulations(1, 1, 2, 1)

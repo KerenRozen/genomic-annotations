@@ -17,9 +17,8 @@ def decode_strand(flag: int) -> str:
 def match_regulations(db, chromosome: int, start_pos: int, end_pos: int, flag: int) -> list:
     """
     Receives a sample.
-    :return: a 5-long list where each match_regulations is set to 1 if the sample within it and 0 if not.
+    :return: a 5-long list where each regulation is set to 1 if the sample within it and 0 if not.
     The regulations order: ['CTCF_binding_site', 'promoter', 'open_chromatin_region', 'TF_binding_site', 'enhancer']
-
     """
     strand = decode_strand(flag)
     index = PARTIAL_SUMS_GH38[chromosome-1] if strand == '+' else PARTIAL_SUMS_GH38[chromosome+193]
