@@ -1,8 +1,5 @@
 import gzip
-from functools import lru_cache
-
 import numpy as np
-from pathlib import Path
 
 GENOME_LENGTH = 6198822410
 
@@ -96,12 +93,12 @@ REGULATORY_REGIONS_ORDER = {'CTCF_binding_site': 4, 'promoter': 3, 'open_chromat
                             'TF_binding_site':1, 'enhancer':0}
 
 GH38_REGULATIONS_RAW_PATH = None # Should override before use
+REGULATIONS_DB_PATH = None # Should override before use
 
 
-@lru_cache(None)
-def _init_regulations_db():
+def init_regulations_db():
     db = np.zeros(GENOME_LENGTH, dtype = np.uintc) # Gh38
-    with gzip.open(Path(GH38_REGULATIONS_RAW_PATH), 'rt') as f:
+    with gzip.open(GH38_REGULATIONS_RAW_PATH, 'rt') as f:
         for row in f:
             if not row.startswith('#'):
                 fields = row.strip().split('\t')
@@ -126,7 +123,15 @@ def _init_regulations_db():
     return db
 
 
-def _decode_strand(flag: int) -> str:
+def main():
+    """
+    Create regulations DB from the gff file and saves it to a file.
+    """
+    db = init_regulations_db()
+    np.save(REGULATIONS_DB_PATH, db)
+
+
+def decode_strand(flag: int) -> str:
     """
     Receives sample's BAM FLAG.
     :return: sample's strand: '+' OR '-' based on:
@@ -137,19 +142,15 @@ def _decode_strand(flag: int) -> str:
     return '+' if reverse == 0 else '-'
 
 
-def match_regulations(chromosome: int, start_pos: int, end_pos: int, flag: int) -> list:
+def match_regulations(db, chromosome: int, start_pos: int, end_pos: int, flag: int) -> list:
     """
-    Receives a sample.
+    Receives a sample and a DB.
     :return: a 5-long list where each regulation is set to 1 if the sample within it and 0 if not.
     The regulations order: ['CTCF_binding_site', 'promoter', 'open_chromatin_region', 'TF_binding_site', 'enhancer']
     """
-    db = _init_regulations_db()
-    strand = _decode_strand(flag)
+    strand = decode_strand(flag)
     index = PARTIAL_SUMS_GH38[chromosome-1] if strand == '+' else PARTIAL_SUMS_GH38[chromosome+193]
     res = np.bitwise_or.reduce(db[index+start_pos-1 :index+end_pos])
 
     return np.unpackbits(np.array([res], dtype='>i4').view(np.uint8))[-5:].tolist()
-
-
-
 

@@ -1,8 +1,5 @@
 import gzip
-from functools import lru_cache
-
 import numpy as np
-from pathlib import Path
 
 GENOME_LENGTH = 6198822410
 
@@ -100,12 +97,12 @@ CLASSIFICATIONS_ORDER_GH38 = {'scaffold': 24, 'pseudogene': 23, 'lnc_RNA': 22, '
                               'C_gene_segment': 1, 'CDS': 0}
 
 GH38_RAW_PATH = None # Should override before use
+CLASSIFICATIONS_DB_PATH = None # Should override before use
 
 
-@lru_cache(None)
-def _init_classifications_db():
+def init_classifications_db():
     db = np.zeros(GENOME_LENGTH, dtype = np.uintc) # Gh38
-    with gzip.open(Path(GH38_RAW_PATH), 'rt') as f:
+    with gzip.open(GH38_RAW_PATH, 'rt') as f:
         for row in f:
             if not row.startswith('#'):
                 fields = row.strip().split('\t')
@@ -131,7 +128,15 @@ def _init_classifications_db():
     return db
 
 
-def _decode_strand(flag: int) -> str:
+def main():
+    """
+    Creates classifications DB from the gff file, and saves it to a file.
+    """
+    db = init_classifications_db()
+    np.save(CLASSIFICATIONS_DB_PATH, db)
+
+
+def decode_strand(flag: int) -> str:
     """
     Receives sample's BAM FLAG.
     :return: sample's strand: '+' OR '-' based on:
@@ -142,10 +147,10 @@ def _decode_strand(flag: int) -> str:
     return '+' if reverse == 0 else '-'
 
 
-def match_classifications(chromosome: int, start_pos: int, end_pos: int, flag: int) -> list:
+def match_classifications(db, chromosome: int, start_pos: int, end_pos: int, flag: int) -> list:
     """
-    Receives a sample.
-    :return: a 26-long list where each classification is set to 1 if the sample within it and 0 if not.
+    Receives a sample and a DB.
+    :return: a 25-long list where each classification is set to 1 if the sample within it and 0 if not.
     The classifications order: ['scaffold', 'pseudogene', 'lnc_RNA', 'ncRNA', 'unconfirmed_transcript',
                                 'V_gene_segment', 'biological_region', 'snRNA', 'D_gene_segment', 'five_prime_UTR',
                                 'pseudogenic_transcript', 'gene', 'mRNA', 'scRNA', 'snoRNA', 'tRNA', 'J_gene_segment',
@@ -153,8 +158,7 @@ def match_classifications(chromosome: int, start_pos: int, end_pos: int, flag: i
                                 'C_gene_segment', 'CDS']
 
     """
-    db = _init_classifications_db()
-    strand = _decode_strand(flag)
+    strand = decode_strand(flag)
     index = PARTIAL_SUMS_GH38[chromosome-1] if strand == '+' else PARTIAL_SUMS_GH38[chromosome+193]
     res = np.bitwise_or.reduce(db[index+start_pos-1 :index+end_pos])
 
