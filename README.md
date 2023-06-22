@@ -27,7 +27,7 @@ pip install -r requirements.txt
 4. Build the annotation database. Run the following command to initiate the database building process:
    1. For 164 cell type regulation:
    ```bash
-   python3 build_cell_type_regulation_db.py <path_to_segway_encyclopedia.bed> <path_to_save_DB_file> <37/38_for_hg37/hg38_respectively> 
+   python3 build_cell_type_regulation_db.py <path to the 164_cell_type_regulation.bed.gz from 3i> <path to save DB file> <37/38 for hg37/hg38 respectively> 
    ```
    
    2. For classifications:
