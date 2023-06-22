@@ -7,7 +7,7 @@ To set up and run the project, follow these steps:
 1. Clone the repository:
 
 ```bash
-git clone <https://github.com/KerenRozen/genomic_annotations>
+git clone <git@github.com:KerenRozen/genomic_annotations.git>
 ```
 
 2. Install the required packages. Make sure you have Python 3.6 installed. Use the following command to install the dependencies:
@@ -22,10 +22,20 @@ pip install -r requirements.txt
    3. Regulation regions 
 
 4. Build the annotation database. Run the following command to initiate the database building process:
-```bash
-python3 build_cell_type_regulation_db.py /path/to/segway_encyclopedia.bed/file /path/to/save/DB/file genome_reference 
-```
-genome_reference should be 37/38 for hg37/hg38 respectively.
+   1. For 164 cell type regulation:
+   ```bash
+   python3 build_cell_type_regulation_db.py <path_to_segway_encyclopedia.bed> <path_to_save_DB_file> <37/38_for_hg37/hg38_respectively> 
+   ```
+   
+   2. For classifications:
+   ```bash
+   to be added
+   ```
+   3. For regulation regions:
+   ```bash
+   to be added
+   ```
+
 This command will process the annotation files and create the necessary database for annotations in the path you provided.
 
 ## Usage
