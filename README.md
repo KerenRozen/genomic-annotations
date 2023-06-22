@@ -7,7 +7,7 @@ To set up and run the project, follow these steps:
 1. Clone the repository:
 
 ```bash
-git clone <git@github.com:KerenRozen/genomic_annotations.git>
+git clone <repo_url>
 ```
 
 2. Install the required packages. Make sure you have Python 3.6 installed. Use the following command to install the dependencies:
