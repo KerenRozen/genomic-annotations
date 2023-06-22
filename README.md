@@ -16,14 +16,14 @@ pip install -r requirements.txt
 ```
 3. Download the necessary annotation files. The following files are required for each type of annotation:
    1. 164 cell type regulation annotations:
-      - [gh37](https://noble.gs.washington.edu/proj/encyclopedia/segway_encyclopedia.bed.gz)
+      - [hg37](https://noble.gs.washington.edu/proj/encyclopedia/segway_encyclopedia.bed.gz)
       - need to add for hg38
    2. Classifications:
-      - [gh37](https://ftp.ensembl.org/pub/grch37/current/gff3/homo_sapiens/Homo_sapiens.GRCh37.87.gff3.gz)
-      - [gh38](https://ftp.ensembl.org/pub/release-109/gff3/homo_sapiens/Homo_sapiens.GRCh38.109.gff3.gz)
+      - [hg37](https://ftp.ensembl.org/pub/grch37/current/gff3/homo_sapiens/Homo_sapiens.GRCh37.87.gff3.gz)
+      - [hg38](https://ftp.ensembl.org/pub/release-109/gff3/homo_sapiens/Homo_sapiens.GRCh38.109.gff3.gz)
    3. Regulation regions:
-      - [gh37](https://ftp.ensembl.org/pub/grch37/current/regulation/homo_sapiens/homo_sapiens.GRCh37.Regulatory_Build.regulatory_features.20201218.gff.gz)
-      - [gh38](https://ftp.ensembl.org/pub/current_regulation/homo_sapiens/homo_sapiens.GRCh38.Regulatory_Build.regulatory_features.20221007.gff.gz)
+      - [hg37](https://ftp.ensembl.org/pub/grch37/current/regulation/homo_sapiens/homo_sapiens.GRCh37.Regulatory_Build.regulatory_features.20201218.gff.gz)
+      - [hg38](https://ftp.ensembl.org/pub/current_regulation/homo_sapiens/homo_sapiens.GRCh38.Regulatory_Build.regulatory_features.20221007.gff.gz)
 4. Build the annotation database. Run the following command to initiate the database building process:
    1. For 164 cell type regulation:
    ```bash
