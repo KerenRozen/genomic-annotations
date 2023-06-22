@@ -10,6 +10,8 @@ GH38_GENOME = DATA_PATH / 'Homo_sapiens.GRCh38.109.gff3.gz'
 GH38_REGULATION = DATA_PATH / 'homo_sapiens.GRCh38.Regulatory_Build.regulatory_features.20221007.gff.gz'
 CLASSIFICATIONS_DB = DATA_PATH / 'classifications_db.npy'
 REGULATIONS_DB = DATA_PATH / 'regulations_db.npy'
+SEGWAY_ENCYCLOPEDIA_37 = DATA_PATH / 'segway_encyclopedia.bed.gz'
+SEGWAY_ENCYCLOPEDIA_38 = DATA_PATH / 'segway_encyclopedia_with_header_hg38.bed.gz'
 
 
 CHROMOSOME_TO_INT_GH37 = {'10': 10, '11': 11, '12': 12, '13': 13, '14': 14, '15': 15, '16': 16, '17': 17, '18': 18,
@@ -86,6 +88,10 @@ CLASSIFICATIONS_ORDER_GH38 = {'scaffold': 24, 'pseudogene': 23, 'lnc_RNA': 22, '
 
 REGULATORY_REGIONS_ORDER = {'CTCF_binding_site': 4, 'promoter': 3, 'open_chromatin_region': 2,
                             'TF_binding_site':1, 'enhancer':0}
+
+
+CELL_TYPES_LABELS = {'Promoter': 9, 'Enhancer': 8, 'Transcribed': 7, 'Bivalent':6, 'RegPermissive': 5, 'ConstitutiveHet': 4,
+                     'FacultativeHet': 3, 'LowConfidence': 2, 'Quiescent': 1}
 
 
 CHROMOSOMES_LENGTHS_GH37 ={1: 249250621, 10: 135534747, 11: 135006516, 12: 133851895, 13: 115169878, 14: 107349540, 15: 102531392,
