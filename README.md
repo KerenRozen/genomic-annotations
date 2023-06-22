@@ -16,7 +16,7 @@ pip install -r requirements.txt
 ```
 3. Download the necessary annotation files. The following files are required for each type of annotation:
    1. 164 cell type regulation annotations:
-      - [link](https://noble.gs.washington.edu/proj/encyclopedia/segway_encyclopedia.bed.gz)
+      - [gh37](https://noble.gs.washington.edu/proj/encyclopedia/segway_encyclopedia.bed.gz)
       - need to add for hg38
    2. Classifications
    3. Regulation regions 
