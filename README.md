@@ -42,6 +42,12 @@ pip install -r requirements.txt
 This command will process the annotation files and create the necessary database for annotations in the path you provided.
 
 ## Usage
+### To test the 164 cell type regulation annotation speed run:
+   ```bash
+   python3 _test_cell_type_annotation_speed.py <path_to_db> <37/38_for_hg37/hg38_respectively> <number_of_samples_to_annotate> <output_foramt> 
+   ```
+   - path_to_db is the local path to the cell type regulation DB that was created in 4i. 
+
 To check annotations for your genomic data, execute the following command:
 
 css
