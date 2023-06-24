@@ -29,7 +29,6 @@ def init_db(input_file, reference_genome):
     Using '2 lists' method.
     Input:  input_file- path to 'segway_encyclopedia.bed'
             reference_genome- 37 for gh37 or 38 for gh38
-    The file has 164785 rows. It contains segments from chromosomes 1-22 | 'X'.
     """
     chromosome_int = CHROMOSOME_TO_INT[reference_genome]
     partial_sums = PARTIAL_SUMS[reference_genome]
@@ -58,9 +57,8 @@ def init_db(input_file, reference_genome):
 
 def main():
     """
-    Receives from user: path to segway_encyclopedia.bed file, path to save nucleotides_DB, path to save annotations_DB,
-                        genome_reference (37 or 38)
-    :return: Saves 2 .npz files: the nucleotides DB and the annotations DB.
+    Receives from user: path to segway_encyclopedia.bed file, path to save the DB, genome_reference (37 or 38)
+    :return: Saves .npz file.
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("functional_DNA_elements", help="path to segway_encyclopedia.bed file")
