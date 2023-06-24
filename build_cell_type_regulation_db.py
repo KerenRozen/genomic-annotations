@@ -3,7 +3,7 @@ import gzip
 import numpy as np
 from pathlib import Path
 
-from services.consts import CHROMOSOME_TO_INT_GH37, CHROMOSOME_TO_INT_GH38, CELL_TYPES_LABELS, PARTIAL_SUMS_GH37, \
+from consts import CHROMOSOME_TO_INT_GH37, CHROMOSOME_TO_INT_GH38, CELL_TYPES_LABELS, PARTIAL_SUMS_GH37, \
     PARTIAL_SUMS_GH38
 
 ENCYCLOPEDIA_LENGTH = {

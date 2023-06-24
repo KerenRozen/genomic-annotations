@@ -1,6 +1,6 @@
 import numpy as np
 import time
-from services.consts import PARTIAL_SUMS_GH37, PARTIAL_SUMS_GH38
+from consts import PARTIAL_SUMS_GH37, PARTIAL_SUMS_GH38
 import random
 
 PARTIAL_SUMS = {
