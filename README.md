@@ -47,20 +47,10 @@ This command will process the annotation files and create the necessary database
    python3 _test_cell_type_annotation_speed.py <path> <hg> <numberofsamples=1> <outputforamt=flat> <sample>
    ```
    Parameters:\
-      >path: The local path to the cell type regulation DB that was created in 4i.\
-      hg: {37,38}. The desired reference genome. 37 or 38 for hg37 hg38 respectively.\
-      numberofsamples: The desired number of random generated samples on which to test the runtime. Default is 1.\
-      outputforamt: {'flat', 'matrix'}. The desired output format of the annotation. When outputforamt='flat' the output is a one dimensional features vector, and when outputforamt='matrix' the output is a matrix with the features for each nucleotide. Default is 'flat'.\
-      sample: {-s chromosome start_pos end_pos flag}. Optional. A specific sample to annotate. \ 
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+   path: The local path to the cell type regulation DB that was created in 4i.\
+   hg: {37,38}. The desired reference genome. 37 or 38 for hg37 hg38 respectively.\
+   numberofsamples: The desired number of random generated samples on which to test the runtime. Default is 1.\
+   outputforamt: {'flat', 'matrix'}. The desired output format of the annotation. When outputforamt='flat' the output is a one dimensional features vector, and when outputforamt='matrix' the output is a matrix with the features for each nucleotide. Default is 'flat'.\
+   sample: {-s chromosome start_pos end_pos flag}. Optional. A specific sample to annotate. \ 
 
-
-To check annotations for your genomic data, execute the following command:
-
-css
-Copy code
-python check_annotations.py --input <input_file>
-Replace <input_file> with the path to your genomic data file.
-
-
-## Contact
-If you have any questions or suggestions regarding the Genomic Annotations project, feel free to contact [insert your contact information].
