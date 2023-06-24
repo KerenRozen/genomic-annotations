@@ -3,13 +3,13 @@ from pathlib import Path
 DATA_PATH = Path("../../data")
 
 
-TEST_SAMPLES = DATA_PATH / 'test_samples_with_flag.tsv'
-READS = DATA_PATH / 'SLX-11873.D707_D502.HFNWFBBXX.s_5.GRCh37.bwa2.bamdownsample001.sorted.bam'
+#TEST_SAMPLES = DATA_PATH / 'test_samples_with_flag.tsv'
+#READS = DATA_PATH / 'SLX-11873.D707_D502.HFNWFBBXX.s_5.GRCh37.bwa2.bamdownsample001.sorted.bam'
 # GENOME = DATA_PATH / 'Homo_sapiens.GRCh37.87.gff3.gz'
 GH38_GENOME = DATA_PATH / 'Homo_sapiens.GRCh38.109.gff3.gz'
 GH38_REGULATION = DATA_PATH / 'homo_sapiens.GRCh38.Regulatory_Build.regulatory_features.20221007.gff.gz'
-CLASSIFICATIONS_DB = DATA_PATH / 'classifications_db.npy'
-REGULATIONS_DB = DATA_PATH / 'regulations_db.npy'
+#CLASSIFICATIONS_DB = DATA_PATH / 'classifications_db.npy'
+#REGULATIONS_DB = DATA_PATH / 'regulations_db.npy'
 SEGWAY_ENCYCLOPEDIA_37 = DATA_PATH / 'segway_encyclopedia.bed.gz'
 SEGWAY_ENCYCLOPEDIA_38 = DATA_PATH / 'segway_encyclopedia_with_header_hg38.bed.gz'
 
