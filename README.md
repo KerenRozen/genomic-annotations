@@ -42,11 +42,17 @@ pip install -r requirements.txt
 This command will process the annotation files and create the necessary database for annotations in the path you provided.
 
 ## Usage
-### To test the 164 cell type regulation annotation speed run:
+#### To test the 164 cell type regulation annotation speed, run:
    ```bash
-   python3 _test_cell_type_annotation_speed.py <path_to_db> <37/38_for_hg37/hg38_respectively> <number_of_samples_to_annotate> <output_foramt> 
+   python3 _test_cell_type_annotation_speed.py <path> <hg> <numberofsamples=1> <outputforamt> <sample>
    ```
-   - path_to_db is the local path to the cell type regulation DB that was created in 4i. 
+   Parameters:
+      path: The local path to the cell type regulation DB that was created in 4i.
+      hg: {37,38}. The desired reference genome. 37 or 38 for hg37 hg38 respectively.
+      numberofsamples: The desired number of random generated samples on which to test the runtime. Default is 1.
+      outputforamt: {'flat', 'matrix'}. The desired output format of the annotation. When outputforamt='flat' the output is a one dimensional features vector, and when outputforamt='matrix' the output is a matrix with the features for each nucleotide. Default is 'flat'. 
+      sample: {-s chromosome start_pos end_pos flag}. Optional. A specific sample to annotate.  
+
 
 To check annotations for your genomic data, execute the following command:
 
