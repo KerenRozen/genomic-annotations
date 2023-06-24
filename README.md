@@ -45,11 +45,19 @@ This command will process the annotation files and create the necessary database
 #### To test the 164 cell type regulation annotation speed, run:
    ```bash
    python3 _test_cell_type_annotation_speed.py <path> <hg> <numberofsamples=1> <outputforamt=flat> <sample>
-   ```
-Parameters:\ 
-&nbsp;`path`: The local path to the cell type regulation DB that was created in 4i.\
-&nbsp;`hg`: {37,38}. The desired reference genome. 37 or 38 for hg37 hg38 respectively.\
-&nbsp;`numberofsamples`: The desired number of random generated samples on which to test the runtime. Default is 1.\
-&nbsp;`outputforamt`: {'flat', 'matrix'}. The desired output format of the annotation. When `outputforamt='flat'` the output is a one dimensional features vector, and when `outputforamt='matrix'` the output is a matrix with the features for each nucleotide. Default is 'flat'.\
-&nbsp;`sample`: {-s chromosome start_pos end_pos flag}. Optional. A specific sample to annotate.\
+   ``` 
+Parameters
+
+- `path`: The local path to the cell type regulation DB that was created in 4i.
+
+- `hg`: {37, 38}. The desired reference genome. Use `37` for hg37 and `38` for hg38.
+
+- `numberofsamples`: The desired number of randomly generated samples on which to test the runtime. The default value is 1.
+
+- `outputforamt`: {'flat', 'matrix'}. The desired output format of the annotation. Use `'flat'` for a one-dimensional feature vector and `'matrix'` for a matrix with features for each nucleotide. The default value is `'flat'`.
+
+- `sample`: `-s chromosome start_pos end_pos flag`. (Optional) Specify a specific sample to annotate.
+
+
+
 
