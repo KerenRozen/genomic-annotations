@@ -1,2 +1,7 @@
 /venv/
 /.idea/
+/services/
+/data/
+/final/
+/plots/
+/test/
