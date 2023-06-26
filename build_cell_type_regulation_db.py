@@ -1,8 +1,8 @@
 import argparse
 import gzip
 import numpy as np
-from pathlib import Path
 
+from pathlib import Path
 from consts import CHROMOSOME_TO_INT_GH37, CHROMOSOME_TO_INT_GH38, CELL_TYPES_LABELS, PARTIAL_SUMS_GH37, \
     PARTIAL_SUMS_GH38
 
@@ -61,11 +61,11 @@ def main():
     :return: Saves .npz file.
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument("functional_DNA_elements", help="path to segway_encyclopedia.bed file")
+    parser.add_argument("cell_type_regulation_file", help="path to segway_encyclopedia.bed file")
     parser.add_argument("db_file", help="path to save DB file")
-    parser.add_argument("genome_reference", help="37 for gh37 or 38 for gh38")
+    parser.add_argument("genome_reference", type=int, help="37 for gh37 or 38 for gh38")
     args = parser.parse_args()
-    nucleotides_db, values_db = init_db(args.functional_DNA_elements, int(args.genome_reference))
+    nucleotides_db, values_db = init_db(args.cell_type_regulation_file, args.genome_reference)
     np.savez_compressed(args.db_file, nucleotides_db, values_db)
 
 

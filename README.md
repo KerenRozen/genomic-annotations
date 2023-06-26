@@ -17,7 +17,7 @@ pip install -r requirements.txt
 3. Download the necessary annotation files. The following files are required for each type of annotation:
    1. 164 cell type regulation annotations:
       * [hg37](https://noble.gs.washington.edu/proj/encyclopedia/segway_encyclopedia.bed.gz)
-      * need to add for hg38
+      * hg38 was created manually from hg37 file.
    2. Classifications:
       * [hg37](https://ftp.ensembl.org/pub/grch37/current/gff3/homo_sapiens/Homo_sapiens.GRCh37.87.gff3.gz)
       * [hg38](https://ftp.ensembl.org/pub/release-109/gff3/homo_sapiens/Homo_sapiens.GRCh38.109.gff3.gz)
