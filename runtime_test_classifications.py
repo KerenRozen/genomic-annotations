@@ -41,9 +41,12 @@ def main():
     db = db["arr_0"]
 
     if input_sample is not None:
-        return match_classifications_vector(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3])\
-            if output_format == 'flat' else\
-            match_classifications_matrix(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3])
+        if output_format == 'flat':
+            print(match_classifications_vector(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3]))
+            return
+        else:
+            print(match_classifications_matrix(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3]))
+            return
 
     start_time_init = time.time()
     # Generate random items

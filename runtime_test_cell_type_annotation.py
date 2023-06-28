@@ -42,9 +42,12 @@ def main():
     values = db["arr_1"]
 
     if input_sample is not None:
-        return annotate_cell_types_vector(nucleotides, values, genome_reference, input_sample[0], input_sample[1], input_sample[2])\
-            if output_format == 'flat' else\
-            annotate_cell_types_matrix(nucleotides, values, genome_reference, input_sample[0], input_sample[1], input_sample[2])
+        if output_format == 'flat':
+            print(annotate_cell_types_vector(nucleotides, values, genome_reference, input_sample[0], input_sample[1], input_sample[2]))
+            return
+        else:
+            print(annotate_cell_types_matrix(nucleotides, values, genome_reference, input_sample[0], input_sample[1], input_sample[2]))
+            return
 
     start_time_init = time.time()
     # Generate random items
