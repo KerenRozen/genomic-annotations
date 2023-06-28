@@ -38,6 +38,7 @@ def main():
     input_sample = args.input_sample
 
     db = np.load(db_file, allow_pickle=True)
+    db = db["arr_0"]
 
     if input_sample is not None:
         return match_classifications_vector(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3])\

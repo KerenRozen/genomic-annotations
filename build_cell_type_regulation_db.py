@@ -40,15 +40,16 @@ def init_db(input_file, reference_genome):
         next(f) # Skip header
         for line_number, row in enumerate(f, start=1):
             fields = row.strip().split('\t')
-            chromosome = chromosome_int[fields[0][3:]] if '_' not in fields[0] else chromosome_int[fields[0][3:fields[0].index('_')]]
-            start = int(fields[1])
-            end = int(fields[2])
-            values_db[line_number][0] = np.float16(fields[3]) # sum_score
-            values_db[line_number][1] = np.float16(fields[4]) # mean_score
-            cells = np.array([CELL_TYPES_LABELS[fields[i]] for i in range(5, 169)], dtype=np.uint8)
-            values_db[line_number][2] = cells # cell types annotations
-            index = partial_sums[chromosome-1]
-            nucleotides_db[index+start-1:index+end] = line_number
+            if '_' not in fields[0]:
+                chromosome = chromosome_int[fields[0][3:]]
+                start = int(fields[1])
+                end = int(fields[2])
+                values_db[line_number][0] = np.float16(fields[3]) # sum_score
+                values_db[line_number][1] = np.float16(fields[4]) # mean_score
+                cells = np.array([CELL_TYPES_LABELS[fields[i]] for i in range(5, 169)], dtype=np.uint8)
+                values_db[line_number][2] = cells # cell types annotations
+                index = partial_sums[chromosome-1]
+                nucleotides_db[index+start-1:index+end] = line_number
 
     f.close()
 
@@ -60,6 +61,7 @@ def main():
     Receives from user: path to segway_encyclopedia.bed file, path to save the DB, genome_reference (37 or 38)
     :return: Saves .npz file.
     """
+
     parser = argparse.ArgumentParser()
     parser.add_argument("cell_type_regulation_file", help="path to segway_encyclopedia.bed file")
     parser.add_argument("db_file", help="path to save DB file")

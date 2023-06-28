@@ -2,8 +2,6 @@ import argparse
 import gzip
 import numpy as np
 from pathlib import Path
-import time
-import sys
 
 from consts import CHROMOSOME_TO_INT_GH38, PARTIAL_SUMS_GH38, CLASSIFICATIONS_ORDER_GH38, PARTIAL_SUMS_GH37, \
     CHROMOSOME_TO_INT_GH37, CLASSIFICATIONS_ORDER_GH37
@@ -71,11 +69,8 @@ def main():
     parser.add_argument("db_file", help="path to save the DB file")
     parser.add_argument("genome_reference", type=int, help="37 for gh37 or 38 for gh38")
     args = parser.parse_args()
-    start_time = time.time()
     db = init_classifications_db(args.genome_file, args.genome_reference)
-    np.save(args.db_file, db)
-    print(time.time()-start_time)
-    print(sys.getsizeof(db))
+    np.savez_compressed(args.db_file, db)
 
 
 if __name__ == '__main__':
