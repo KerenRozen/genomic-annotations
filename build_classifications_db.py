@@ -61,8 +61,8 @@ def init_classifications_db(input_file, reference_genome):
 
 def main():
     """
-    Create classifications DB in .npy file from the gff file.
-    The GFF path , the path where the DB will be stored and the genome_reference (37 or 38) are received as input from the user.
+    Create classifications DB in .npz file from the gff file.
+    The GFF path , the path where the DB will be saved and the genome_reference (37 or 38) are received as input from the user.
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("genome_file", help="path to the genome file")

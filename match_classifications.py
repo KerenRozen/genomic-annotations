@@ -60,7 +60,7 @@ def match_classifications_matrix(db, reference_genome, chromosome: int, start_po
     Receives a sample.
     :return: a matrix with shape (sample_length, number_of_different_classifications) represented as a list of numpy arrays.
     The number_of_different_classifications for hg37 is 32 and for hg38 is 25.
-    Each row is a single nucleotide annotation: a numpy ndarray where each classification is set to 1 if the sample within it and 0 if not.
+    Each row is a single nucleotide annotation: a numpy ndarray in which each classification is set to 1 if the sample within it and 0 if not.
     The classifications order:
     hg37 ['RNA', 'snoRNA_gene', 'lincRNA', 'VD_gene_segment', 'NMD_transcript_variant', 'exon',
          'miRNA', 'biological_region', 'mRNA', 'snRNA', 'rRNA_gene', 'miRNA_gene', 'gene',
