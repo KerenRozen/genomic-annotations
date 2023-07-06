@@ -35,7 +35,7 @@ def init_db(input_file, reference_genome):
     genome_length = GENOME_LENGTH[reference_genome]
     nucleotides_db = np.zeros(genome_length, dtype=np.uintc)
     values_db = np.empty([ENCYCLOPEDIA_LENGTH[reference_genome]+1,3],dtype=object)
-    values_db[0] = np.array([np.float16(0), np.float16(0), np.array([0 for i in range(164)], dtype=np.uint8)], dtype=np.object)
+    values_db[0] = np.array([np.float16(0), np.float16(0), np.array([0 for _ in range(164)], dtype=np.uint8)], dtype=np.object)
     with gzip.open(Path(input_file), 'rt') as f:
         next(f) # Skip header
         for line_number, row in enumerate(f, start=1):

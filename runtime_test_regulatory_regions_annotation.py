@@ -3,7 +3,7 @@ import numpy as np
 import random
 import time
 
-from annotate_cell_type_regulation import annotate_cell_types_vector, annotate_cell_types_matrix
+from annotate_regulatory_regions import match_regulatory_regions_vector, match_regulatory_regions_matrix
 
 
 def generate_random_items(n):
@@ -38,15 +38,14 @@ def main():
     input_sample = args.input_sample
 
     db = np.load(db_file, allow_pickle=True)
-    nucleotides = db["arr_0"]
-    values = db["arr_1"]
+    db = db["arr_0"]
 
     if input_sample is not None:
         if output_format == 'flat':
-            print(annotate_cell_types_vector(nucleotides, values, genome_reference, input_sample[0], input_sample[1], input_sample[2]))
+            print(match_regulatory_regions_vector(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3]))
             return
         else:
-            print(annotate_cell_types_matrix(nucleotides, values, genome_reference, input_sample[0], input_sample[1], input_sample[2]))
+            print(match_regulatory_regions_matrix(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3]))
             return
 
     start_time_init = time.time()
@@ -58,13 +57,13 @@ def main():
         start_time = time.time()
         for item in random_items:
             temp.append(
-                annotate_cell_types_vector(nucleotides, values, genome_reference, chromosome=item[0], start_position=item[1], end_position=item[1] + 200))
+               match_regulatory_regions_vector(db, genome_reference, chromosome=item[0], start_pos=item[1], end_pos=item[1] + 200, flag=item[2]))
         end_time = time.time()
     else:
         start_time = time.time()
         for item in random_items:
             temp.append(
-                annotate_cell_types_matrix(nucleotides, values, genome_reference, chromosome=item[0], start_position=item[1], end_position=item[1] + 200))
+                match_regulatory_regions_matrix(db, genome_reference, chromosome=item[0], start_pos=item[1], end_pos=item[1] + 200, flag=item[2]))
         end_time = time.time()
 
     print("Elapsed init time: {:.4f} seconds".format(end_time_init - start_time_init))

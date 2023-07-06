@@ -24,7 +24,9 @@ pip install -r requirements.txt
    3. Regulation regions:
       * [hg37](https://ftp.ensembl.org/pub/grch37/current/regulation/homo_sapiens/homo_sapiens.GRCh37.Regulatory_Build.regulatory_features.20201218.gff.gz)
       * [hg38](https://ftp.ensembl.org/pub/current_regulation/homo_sapiens/homo_sapiens.GRCh38.Regulatory_Build.regulatory_features.20221007.gff.gz)
-
+   4. Methylation:
+      * [hg37](https://www.cs.huji.ac.il/w~nloyfer/wgbs_tables/atlas.summary.hg19.tsv.gz)
+      * [hg38](https://www.cs.huji.ac.il/w~nloyfer/wgbs_tables/atlas.summary.hg38.tsv.gz)
 ## Building the annotations databases
 Run the following command to initiate the database building process:
 #### To build cell type regulation DB:
@@ -40,6 +42,11 @@ Run the following command to initiate the database building process:
 #### To build regulation regions DB:
    ```bash
    python3 build_regulatory_regions_db.py <inputpath> <outputpath> <hg> 
+   ```
+
+#### To build methylation DB:
+   ```bash
+   python3 build_methylation_db.py <inputpath> <outputpath> <hg> 
    ```
 
 Parameters in all cases:
@@ -60,12 +67,17 @@ This commands will process the files and create the necessary databases for anno
 
 #### To test the classifications annotation speed, run:
    ```bash
-   python3 runtime_test_classifications.py <path> <hg> <numberofsamples=1> <outputforamt=flat> <sample>
+   python3 runtime_test_classifications_annotation.py <path> <hg> <numberofsamples=1> <outputforamt=flat> <sample>
    ``` 
 
 #### To test the regulatory regions annotation speed, run:
    ```bash
-   python3 runtime_test_regulatory_regions.py <path> <hg> <numberofsamples=1> <outputforamt=flat> <sample>
+   python3 runtime_test_regulatory_regions_annotation.py <path> <hg> <numberofsamples=1> <outputforamt=flat> <sample>
+   ``` 
+
+#### To test the methylation annotation speed, run:
+   ```bash
+   python3 runtime_test_methylation_annotation.py <path> <hg> <numberofsamples=1> <outputforamt=flat> <sample>
    ``` 
 
 Parameters in all cases:

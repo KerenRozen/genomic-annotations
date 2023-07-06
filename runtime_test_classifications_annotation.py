@@ -3,7 +3,7 @@ import numpy as np
 import random
 import time
 
-from match_regulatory_regions import match_regulatory_regions_vector, match_regulatory_regions_matrix
+from annotate_classifications import match_classifications_vector, match_classifications_matrix
 
 
 def generate_random_items(n):
@@ -42,10 +42,10 @@ def main():
 
     if input_sample is not None:
         if output_format == 'flat':
-            print(match_regulatory_regions_vector(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3]))
+            print(match_classifications_vector(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3]))
             return
         else:
-            print(match_regulatory_regions_matrix(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3]))
+            print(match_classifications_matrix(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3]))
             return
 
     start_time_init = time.time()
@@ -57,13 +57,13 @@ def main():
         start_time = time.time()
         for item in random_items:
             temp.append(
-               match_regulatory_regions_vector(db, genome_reference, chromosome=item[0], start_pos=item[1], end_pos=item[1] + 200, flag=item[2]))
+                match_classifications_vector(db, genome_reference, chromosome=item[0], start_pos=item[1], end_pos=item[1] + 200, flag=item[2]))
         end_time = time.time()
     else:
         start_time = time.time()
         for item in random_items:
             temp.append(
-                match_regulatory_regions_matrix(db, genome_reference, chromosome=item[0], start_pos=item[1], end_pos=item[1] + 200, flag=item[2]))
+                match_classifications_matrix(db, genome_reference, chromosome=item[0], start_pos=item[1], end_pos=item[1] + 200, flag=item[2]))
         end_time = time.time()
 
     print("Elapsed init time: {:.4f} seconds".format(end_time_init - start_time_init))

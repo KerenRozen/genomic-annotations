@@ -3,7 +3,7 @@ import numpy as np
 import random
 import time
 
-from match_classifications import match_classifications_vector, match_classifications_matrix
+from annotate_methylation import annotate_methylation_vector, annotate_methylation_matrix
 
 
 def generate_random_items(n):
@@ -38,14 +38,15 @@ def main():
     input_sample = args.input_sample
 
     db = np.load(db_file, allow_pickle=True)
-    db = db["arr_0"]
+    nucleotides = db["arr_0"]
+    values = db["arr_1"]
 
     if input_sample is not None:
         if output_format == 'flat':
-            print(match_classifications_vector(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3]))
+            print(annotate_methylation_vector(nucleotides, values, genome_reference, input_sample[0], input_sample[1], input_sample[2]))
             return
         else:
-            print(match_classifications_matrix(db, genome_reference, input_sample[0], input_sample[1], input_sample[2], input_sample[3]))
+            print(annotate_methylation_matrix(nucleotides, values, genome_reference, input_sample[0], input_sample[1], input_sample[2]))
             return
 
     start_time_init = time.time()
@@ -57,13 +58,13 @@ def main():
         start_time = time.time()
         for item in random_items:
             temp.append(
-                match_classifications_vector(db, genome_reference, chromosome=item[0], start_pos=item[1], end_pos=item[1] + 200, flag=item[2]))
+                annotate_methylation_vector(nucleotides, values, genome_reference, chromosome=item[0], start_position=item[1], end_position=item[1] + 200))
         end_time = time.time()
     else:
         start_time = time.time()
         for item in random_items:
             temp.append(
-                match_classifications_matrix(db, genome_reference, chromosome=item[0], start_pos=item[1], end_pos=item[1] + 200, flag=item[2]))
+                annotate_methylation_matrix(nucleotides, values, genome_reference, chromosome=item[0], start_position=item[1], end_position=item[1] + 200))
         end_time = time.time()
 
     print("Elapsed init time: {:.4f} seconds".format(end_time_init - start_time_init))
